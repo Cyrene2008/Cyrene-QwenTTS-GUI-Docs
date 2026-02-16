@@ -1,0 +1,35 @@
+name: Sync GitHub to Gitee
+on:
+  push:
+    branches: [ main, master, dev ] 
+    tags: ['*']
+  release:
+    types: [published, edited] 
+  workflow_dispatch:
+
+jobs:
+  sync-to-gitee:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10 
+    steps:
+      - name: Checkout full repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 拉取所有提交历史和标签，必须配置
+
+      - name: Sync code to Gitee
+        uses: wearerequired/git-mirror-action@master
+        env:
+          # 用 GIT_TOKEN 做 HTTPS 认证（核心修复）
+          GIT_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        with:
+          source-repo: "https://github.com/${{ github.repository }}.git"
+          # HTTPS 认证格式：用户名:令牌@仓库地址
+          destination-repo: "https://${{ secrets.GITEE_USERNAME }}:${{ secrets.GITEE_TOKEN }}@gitee.com/${{ secrets.GITEE_USERNAME }}/${{ github.event.repository.name }}.git"
+
+      - name: Sync verification
+        run: |
+          # 输出同步结果，方便排查
+          echo "✅ 同步完成！"
+          echo "🔗 Gitee 仓库地址：https://gitee.com/${{ secrets.GITEE_USERNAME }}/${{ github.event.repository.name }}"
+          echo "🔖 本次同步的分支/标签：${{ github.ref }}"
