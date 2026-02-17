@@ -23,7 +23,7 @@ export default defineThemeConfig({
       navbar: zhNavbar,
       footer: {
         message: '由 <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a> 驱动',
-        copyright: `© ${currentYear} Cyren2008 | <a href="https://昔涟.cn" target="_blank" rel="noopener noreferrer">昔涟.cn</a> | <a href="https://icp.gov.moe/?keyword=20260093" target="_blank" rel="noopener noreferrer">萌ICP备20260093号</a> | <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener noreferrer">GPLv3 许可证</a>`,
+        copyright: `© ${currentYear} Cyrene2008 | <a href="https://昔涟.cn" target="_blank" rel="noopener noreferrer">昔涟.cn</a> | <a href="https://icp.gov.moe/?keyword=20260093" target="_blank" rel="noopener noreferrer">萌ICP备20260093号</a> | <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener noreferrer">GPLv3 许可证</a>`,
       },
     },
     '/en/': {
@@ -34,4 +34,5 @@ export default defineThemeConfig({
       },
     },
   },
+
 })
